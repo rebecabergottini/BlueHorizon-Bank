@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from routes.user import user
 from config.openapi import tags_metadata
 
+
+
 app = FastAPI(
     title="Users API",
     description="a REST API using python and mysql",

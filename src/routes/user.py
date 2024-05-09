@@ -2,9 +2,8 @@ from fastapi import APIRouter, Response
 from config.db import conn
 from models.user import users
 from schemas.user import User
-from typing import List
+from typing import List, Dict
 from starlette.status import HTTP_204_NO_CONTENT
-
 from cryptography.fernet import Fernet
 
 user = APIRouter()
@@ -31,7 +30,6 @@ def create_user(user: User):
 @user.get("/users/{id}", tags=["users"], response_model=User, description="Get a single user by Id",)
 def get_user(id: str):
     return conn.execute(users.select().where(users.c.id == id)).first()
-
 
 @user.delete("/users/{id}", status_code=HTTP_204_NO_CONTENT, tags=["users"])
 def delete_user(id: str):
